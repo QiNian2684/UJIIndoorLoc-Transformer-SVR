@@ -1,0 +1,40 @@
+{
+  "seed": 42,
+  "paths": {
+    "train_csv": "UJIndoorLoc/trainingData.csv",
+    "eval_csv": "UJIndoorLoc/validationData.csv",
+    "result_root": "result"
+  },
+  "preprocess": {
+    "building_id": 0,
+    "val_size": 0.1
+  },
+  "optuna": {
+    "direction": "minimize",
+    "sampler_seed": 42,
+    "study_name_prefix": "wifi_transformer_svr_staged",
+    "catboost_n_trials": 300,
+    "top_base_candidates": 1
+  },
+  "training": {
+    "feature_batch_size": 1024,
+    "num_workers": 0
+  },
+  "device": {
+    "require_cuda": true,
+    "device_index": 0
+  },
+  "reproducibility": {
+    "deterministic": true,
+    "strict_deterministic_algorithms": false,
+    "deterministic_warn_only": true,
+    "cublas_workspace_config": ":4096:8"
+  },
+  "stage2_only": {
+    "base_source": "result/Building0Result_1/base_search",
+    "output_root": "result",
+    "selected_base_trial": null,
+    "top_k": 1,
+    "catboost_n_trials": 450
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "seed": 42,
+  "paths": {
+    "train_csv": "UJIndoorLoc/trainingData.csv",
+    "result_root": "result",
+    "eval_csv": "UJIndoorLoc/validationData.csv"
+  },
+  "preprocess": {
+    "building_id": 2,
+    "val_size": 0.1
+  },
+  "optuna": {
+    "base_n_trials": 250,
+    "top_base_candidates": 1,
+    "direction": "minimize",
+    "sampler_seed": 42,
+    "study_name_prefix": "wifi_transformer_svr_staged",
+    "enable_pruning": true,
+    "pruner_n_startup_trials": 20,
+    "pruner_n_warmup_steps": 10,
+    "pruner_interval_steps": 1,
+    "catboost_n_trials": 500
+  },
+  "training": {
+    "max_epochs": 150,
+    "feature_batch_size": 256,
+    "train_log_interval": 100,
+    "num_workers": 0
+  },
+  "device": {
+    "require_cuda": true,
+    "device_index": 0
+  },
+  "reproducibility": {
+    "deterministic": true,
+    "strict_deterministic_algorithms": false,
+    "deterministic_warn_only": true,
+    "cublas_workspace_config": ":4096:8"
+  }
+}
